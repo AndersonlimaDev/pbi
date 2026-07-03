@@ -1,0 +1,115 @@
+table Planilha1
+	lineageTag: b6e482da-158d-45a5-b69a-264762f83faa
+
+	column 'Cód Cliente'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e602c9f-2f28-44e6-abc4-f053d5abf37a
+		summarizeBy: sum
+		sourceColumn: Cód Cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column Situação
+		dataType: string
+		lineageTag: bcc71c44-09ca-44fa-a07c-1fe4295a954a
+		summarizeBy: none
+		sourceColumn: Situação
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cliente
+		dataType: string
+		lineageTag: 3ef45cad-1ff5-4e17-9f98-24b0edf59ec9
+		summarizeBy: none
+		sourceColumn: Cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column CNPJ
+		dataType: int64
+		formatString: 0
+		lineageTag: 7e3335c1-192a-4c96-82de-b4147a1ace75
+		summarizeBy: sum
+		sourceColumn: CNPJ
+
+		annotation SummarizationSetBy = Automatic
+
+	column Endereço
+		dataType: string
+		lineageTag: efd0478e-f4e3-44c5-910d-d7ee82e1806b
+		summarizeBy: none
+		sourceColumn: Endereço
+
+		annotation SummarizationSetBy = Automatic
+
+	column Bairro
+		dataType: string
+		lineageTag: 1e1feebb-275e-49c2-b618-e79e803d1287
+		summarizeBy: none
+		sourceColumn: Bairro
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cidade
+		dataType: string
+		lineageTag: b4ee7fda-ac11-4419-8050-5a3dcde27d00
+		summarizeBy: none
+		sourceColumn: Cidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column UF
+		dataType: string
+		lineageTag: f938f08d-a1fe-427a-a738-1e829369040b
+		summarizeBy: none
+		sourceColumn: UF
+
+		annotation SummarizationSetBy = Automatic
+
+	column CEP
+		dataType: int64
+		formatString: 0
+		lineageTag: 9034f485-4723-459b-8512-d6a3d56d8d19
+		summarizeBy: sum
+		sourceColumn: CEP
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Endereço Completo'
+		dataType: string
+		lineageTag: d6142548-f6e3-4590-be5b-62ddb778f726
+		summarizeBy: none
+		sourceColumn: Endereço Completo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Região Cliente'
+		dataType: string
+		lineageTag: f81664fd-b5dc-4d77-9ba8-b91602f22dd1
+		summarizeBy: none
+		sourceColumn: Região Cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column Marca
+		dataType: string
+		lineageTag: 7a089fd3-3a1b-411b-b232-64438db82a4a
+		summarizeBy: none
+		sourceColumn: Marca
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Planilha1 = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("D:\Downloads\BASE-2.xlsx"), null, true),
+				    Planilha1_Sheet = Fonte{[Item="Planilha1",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Planilha1_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Cód Cliente", Int64.Type}, {"Situação", type text}, {"Cliente", type text}, {"CNPJ", Int64.Type}, {"Endereço", type text}, {"Bairro", type text}, {"Cidade", type text}, {"UF", type text}, {"CEP", Int64.Type}, {"Endereço Completo", type text}, {"Região Cliente", type text}, {"Marca", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+

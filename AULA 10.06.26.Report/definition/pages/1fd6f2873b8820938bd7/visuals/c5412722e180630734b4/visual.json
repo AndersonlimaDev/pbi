@@ -1,0 +1,103 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "c5412722e180630734b4",
+  "position": {
+    "x": 10.078740157480315,
+    "y": 109.18635170603675,
+    "z": 1000,
+    "height": 611.44356955380579,
+    "width": 1269.9212598425197,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "map",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Planilha1"
+                    }
+                  },
+                  "Property": "Endereço Completo"
+                }
+              },
+              "queryRef": "Planilha1.Endereço Completo",
+              "nativeQueryRef": "Endereço Completo",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Planilha1"
+                    }
+                  },
+                  "Property": "Situação"
+                }
+              },
+              "queryRef": "Planilha1.Situação",
+              "nativeQueryRef": "Situação"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 9,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Planilha1"
+                          }
+                        },
+                        "Property": "Situação"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'INATIVO'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
