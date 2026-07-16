@@ -1,0 +1,72 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "20b17455f6c0377ed92b",
+  "position": {
+    "x": 689.69072164948454,
+    "y": 159.58762886597938,
+    "z": 1,
+    "height": 280.20618556701032,
+    "width": 590.10309278350519,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "map",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "financials"
+                    }
+                  },
+                  "Property": "Country"
+                }
+              },
+              "queryRef": "financials.Country",
+              "nativeQueryRef": "Country",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Mapa Clientes'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "be5c1e848a7cfb0a252b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "financials"
+              }
+            },
+            "Property": "Country"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}
